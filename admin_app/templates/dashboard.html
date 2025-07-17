@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Agent Infrastructure Admin Dashboard</h1>
+<div class="row g-4">
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Task Orchestration & Marketplace</h5>
+        <p class="card-text">Submit, monitor, and manage tasks and agent assignments.</p>
+        <a href="/admin/tasks/" class="btn btn-primary">Manage Tasks</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Federated Learning / MARL Trainer</h5>
+        <p class="card-text">Configure training, manage policies, and trigger new rounds.</p>
+        <a href="/admin/federated/" class="btn btn-primary">Federated Learning</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Crew Configuration</h5>
+        <p class="card-text">Configure Translation, QA, and Red Team crews.</p>
+        <a href="/admin/crews/" class="btn btn-primary">Crew Config</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Performance & Analytics</h5>
+        <p class="card-text">Monitor agent health, reputation, and task marketplace analytics.</p>
+        <a href="/admin/performance/" class="btn btn-primary">Performance</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Learning Sharing & Utilization</h5>
+        <p class="card-text">Browse, update, or delete SharableLearning objects.</p>
+        <a href="/admin/learnings/" class="btn btn-primary">Learnings</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

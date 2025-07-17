@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Task Orchestration & Marketplace</h2>
+<div class="mb-3">
+    <a href="/admin/tasks/new" class="btn btn-success">Submit New Task</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.assigned_to or '-' }}</td>
+            <td>{{ task.deadline or '-' }}</td>
+            <td>
+                <a href="/admin/tasks/{{ task.id }}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="/admin/tasks/{{ task.id }}/cancel" class="btn btn-sm btn-danger">Cancel</a>
+                <a href="/admin/tasks/{{ task.id }}/reassign" class="btn btn-sm btn-warning">Reassign</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

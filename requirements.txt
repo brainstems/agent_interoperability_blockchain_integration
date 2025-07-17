@@ -1,0 +1,25 @@
+fastapi
+Jinja2
+python-multipart
+starlette>=0.85.0
+uvicorn[standard]>=0.18.0
+redis[hiredis]>=5.0.0
+pydantic>=2.0.0,<3.0.0
+
+# Knowledge Graph
+rdflib>=6.0.0
+
+# Optional, for specific LLM providers if we implement them fully
+# openai
+langchain-core>=0.1.20,<0.2.0
+langchain-anthropic>=0.1.0,<0.2.0
+crewai>=0.10.0
+langchain>=0.1.0
+requests>=2.28.0
+flwr>=1.8.0
+numpy>=1.23.0
+protobuf==4.25.3
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.20.0

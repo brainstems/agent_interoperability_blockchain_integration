@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Federated Learning / MARL Trainer</h2>
+
+<h4 class="mt-4">Configuration</h4>
+<form method="post" action="/admin/federated/config">
+  <div class="mb-3">
+    <label for="learning_rate" class="form-label">Learning Rate</label>
+    <input type="number" step="any" class="form-control" id="learning_rate" name="learning_rate" value="{{ config.learning_rate }}">
+  </div>
+  <div class="mb-3">
+    <label for="num_rounds" class="form-label">Number of Rounds</label>
+    <input type="number" class="form-control" id="num_rounds" name="num_rounds" value="{{ config.num_rounds }}">
+  </div>
+  <div class="mb-3">
+    <label for="participating_agents" class="form-label">Participating Agents (comma-separated)</label>
+    <input type="text" class="form-control" id="participating_agents" name="participating_agents" value="{{ config.participating_agents | join(', ') }}">
+  </div>
+  <button type="submit" class="btn btn-primary">Update Config</button>
+</form>
+
+<hr>
+<h4 class="mt-4">Trigger Training</h4>
+<form method="post" action="/admin/federated/run">
+  <button type="submit" class="btn btn-success">Trigger New Federated Learning Round</button>
+</form>
+
+<hr>
+<h4 class="mt-4">Model Policies</h4>
+<form method="post" action="/admin/federated/policies/upload" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="policy_file" class="form-label">Upload Policy/Checkpoint</label>
+    <input type="file" class="form-control" id="policy_file" name="policy_file">
+  </div>
+  <button type="submit" class="btn btn-secondary">Upload Policy</button>
+</form>
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for policy in policies %}
+    <tr>
+      <td>{{ policy.id }}</td>
+      <td>{{ policy.name }}</td>
+      <td><a href="{{ policy.download_url }}" class="btn btn-sm btn-outline-primary">Download</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

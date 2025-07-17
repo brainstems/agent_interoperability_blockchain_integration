@@ -1,0 +1,150 @@
+milestones:
+  - milestone_type: TaskCompletion
+    milestone_id: task1_success
+    description: "Successful completion of data analysis task without errors."
+    reward_amount: 50.0
+    task_name: "Perform Data Analysis"
+    expected_status: "Completed"
+    max_errors_associated: 0
+
+  - milestone_type: TaskCompletion
+    milestone_id: task2_flawless_deploy
+    description: "Flawless deployment of smart contract."
+    reward_amount: 100.0
+    task_name: "Deploy Smart Contract"
+    expected_status: "Completed"
+    max_errors_associated: 0
+
+  - milestone_type: CrewPerformance
+    milestone_id: crew_efficiency_gold
+    description: "Overall crew performance is excellent (fast and no errors)."
+    reward_amount: 200.0
+    max_crew_duration_seconds: 120.0
+    max_total_errors: 0
+
+  - milestone_type: CrewPerformance
+    milestone_id: crew_completion_silver
+    description: "Crew completes at least 2 tasks successfully."
+    reward_amount: 75.0
+    min_tasks_completed: 2
+
+  - milestone_type: TaskCompletion
+    milestone_id: task3_partial_success
+    description: "Data processing task completed, even with minor issues."
+    reward_amount: 25.0
+    task_name: "Process Raw Data"
+    expected_status: "Completed"
+    max_errors_associated: 1
+
+  - milestone_type: ExternalState
+    milestone_id: blockchain_owner_check
+    description: "Verify contract owner on blockchain."
+    reward_amount: 75.0
+    target_system: "Blockchain"
+    query_details:
+      contract: "0xContractA"
+      property: "owner"
+    expected_value: "UserX_from_tool"
+    comparison_operator: "equals"
+
+  - milestone_type: ExternalState
+    milestone_id: db_user_status_active
+    description: "Verify user status in database is active."
+    reward_amount: 30.0
+    target_system: "Database"
+    query_details:
+      table: "user_table"
+      id: "123"
+      column: "status"
+    expected_value: "active_from_tool"
+    comparison_operator: "equals"
+
+  - milestone_type: ExternalState
+    milestone_id: api_order_value_check
+    description: "Verify order value from API is significant."
+    reward_amount: 40.0
+    target_system: "API"
+    query_details:
+      endpoint: "order_value_check"
+      id: "789"
+    expected_value: "200"
+    comparison_operator: "greater_than"
+
+  - milestone_type: ExternalState
+    milestone_id: api_item_count_ge
+    description: "Verify API item count is greater than or equal to 10."
+    reward_amount: 15.0
+    target_system: "API"
+    query_details:
+      endpoint: "inventory_check"
+      item_id: "XYZ"
+    expected_value: "10"
+    comparison_operator: "greater_than_or_equals"
+
+  - milestone_type: ExternalState
+    milestone_id: db_error_threshold_le
+    description: "Verify Database error threshold is less than or equal to 5."
+    reward_amount: 15.0
+    target_system: "Database"
+    query_details:
+      table: "system_config"
+      key: "error_threshold"
+      column: "value"
+    expected_value: "5"
+    comparison_operator: "less_than_or_equals"
+
+  - milestone_type: ExternalState
+    milestone_id: blockchain_log_pattern_match
+    description: "Verify Blockchain log entry matches success pattern."
+    reward_amount: 25.0
+    target_system: "Blockchain"
+    query_details:
+      transaction_id: "0xTX123"
+      log_index: "0"
+    expected_value: "EVENT_.*_SUCCESS"
+    comparison_operator: "matches_regex"
+
+  - milestone_type: ExternalState
+    milestone_id: api_feature_flag_true
+    description: "Verify API feature flag 'new_dashboard' is true."
+    reward_amount: 10.0
+    target_system: "API"
+    query_details:
+      endpoint: "feature_flags"
+      flag_name: "new_dashboard"
+    expected_value: "true" # Placeholder, agent logic checks actual_value
+    comparison_operator: "is_true"
+
+  - milestone_type: ExternalState
+    milestone_id: db_maintenance_mode_false
+    description: "Verify Database 'maintenance_mode' is false."
+    reward_amount: 10.0
+    target_system: "Database"
+    query_details:
+      table: "app_settings"
+      setting: "maintenance_mode"
+      column: "is_active"
+    expected_value: "false" # Placeholder, agent logic checks actual_value
+    comparison_operator: "is_false"
+
+  - milestone_type: ExternalState
+    milestone_id: blockchain_optional_data_empty
+    description: "Verify Blockchain 'optional_user_data' is empty."
+    reward_amount: 5.0
+    target_system: "Blockchain"
+    query_details:
+      contract: "0xDataStore"
+      field: "optional_user_data"
+    expected_value: "" # Placeholder, agent logic checks actual_value
+    comparison_operator: "is_empty"
+
+  - milestone_type: ExternalState
+    milestone_id: api_user_comment_not_empty
+    description: "Verify API 'user_comment' is not empty."
+    reward_amount: 5.0
+    target_system: "API"
+    query_details:
+      endpoint: "user_feedback"
+      feedback_id: "FDBK001"
+    expected_value: "some_content" # Placeholder, agent logic checks actual_value
+    comparison_operator: "is_not_empty"

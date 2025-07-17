@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Submit New Task</h2>
+<form method="post" action="/admin/tasks/new">
+  <div class="mb-3">
+    <label for="name" class="form-label">Task Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" id="description" name="description"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="priority" class="form-label">Priority</label>
+    <select class="form-select" id="priority" name="priority">
+      <option value="High">High</option>
+      <option value="Medium" selected>Medium</option>
+      <option value="Low">Low</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="deadline" class="form-label">Deadline</label>
+    <input type="date" class="form-control" id="deadline" name="deadline">
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+  <a href="/admin/tasks/" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

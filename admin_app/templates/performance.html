@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Performance & Analytics</h2>
+<h4 class="mt-4">Agent Performance</h4>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Agent ID</th>
+            <th>Health</th>
+            <th>Uptime (hrs)</th>
+            <th>Error Rate (%)</th>
+            <th>Completed Tasks</th>
+            <th>Failed Tasks</th>
+            <th>Pending Tasks</th>
+            <th>Reputation</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for agent in agents %}
+        <tr>
+            <td>{{ agent.agent_id }}</td>
+            <td>{{ agent.health }}</td>
+            <td>{{ agent.uptime }}</td>
+            <td>{{ agent.error_rate }}</td>
+            <td>{{ agent.completed_tasks }}</td>
+            <td>{{ agent.failed_tasks }}</td>
+            <td>{{ agent.pending_tasks }}</td>
+            <td>{{ agent.reputation or '-' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h4 class="mt-5">Marketplace Analytics</h4>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="card-title">Number of Bids</h6>
+        <p class="card-text display-6">{{ marketplace.num_bids }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="card-title">Average Bid</h6>
+        <p class="card-text display-6">{{ marketplace.avg_bid }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="card-title">Avg. Completion Time (min)</h6>
+        <p class="card-text display-6">{{ marketplace.avg_completion_time }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% if marketplace.bottlenecks %}
+<div class="alert alert-warning">
+  <strong>Bottlenecks:</strong> {{ marketplace.bottlenecks | join(", ") }}
+</div>
+{% endif %}
+{% endblock %}

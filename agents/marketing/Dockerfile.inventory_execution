@@ -1,0 +1,31 @@
+# Use Python 3.11 as base image
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+  gcc \
+  python3-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir \
+  redis \
+  crewai \
+  anthropic \
+  pydantic
+
+# Copy application files
+COPY ./marketing_crew.py .
+COPY ./inventory_crew.py .
+COPY ./inventory_execution_worker.py .
+COPY ./tools/ ./tools/
+COPY ./sarah/ ./sarah/
+
+# Create directory for logs
+RUN mkdir -p /app/logs
+
+# Command to run the inventory execution worker
+CMD ["python", "inventory_execution_worker.py"] 

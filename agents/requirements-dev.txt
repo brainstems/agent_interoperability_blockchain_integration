@@ -1,0 +1,40 @@
+# Test dependencies
+pytest==7.4.0
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-mock==3.11.1
+pytest-xdist==3.3.1
+
+# Development tools
+black==23.7.0
+isort==5.12.0
+mypy==1.4.1
+flake8==6.1.0
+
+# Documentation
+mkdocs==1.5.2
+mkdocs-material==9.2.1
+mkdocstrings==0.22.0
+
+# Testing utilities
+httpx==0.24.1
+respx==0.20.2
+pytest-httpx==0.24.1
+
+# For CSV tools
+pandas>=2.0.0
+
+# For retries
+tenacity==8.2.2
+
+# For type checking
+typing-extensions>=4.5.0
+
+# For async testing
+asynctest==0.13.0
+
+# For mocking
+freezegun==1.2.2
+
+# For performance testing
+pytest-benchmark==4.0.0

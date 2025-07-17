@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Crew Configuration</h2>
+<div class="row">
+  <div class="col-md-6">
+    <form method="post" action="/admin/crews/translation/config">
+      <h4>Translation Crew</h4>
+      <div class="mb-3">
+        <label for="translation_config" class="form-label">Config (JSON)</label>
+        <textarea class="form-control" id="translation_config" name="config_json" rows="4">{{ translation_config }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Translation Config</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <form method="post" action="/admin/crews/qa/config">
+      <h4>QA Crew</h4>
+      <div class="mb-3">
+        <label for="qa_config" class="form-label">Config (JSON)</label>
+        <textarea class="form-control" id="qa_config" name="config_json" rows="4">{{ qa_config }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Update QA Config</button>
+    </form>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <form method="post" action="/admin/crews/red_team/config">
+      <h4>Red Team Crew</h4>
+      <div class="mb-3">
+        <label for="red_team_config" class="form-label">Config (JSON)</label>
+        <textarea class="form-control" id="red_team_config" name="config_json" rows="4">{{ red_team_config }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Red Team Config</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Learning Sharing & Utilization</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Source</th>
+      <th>Task Description</th>
+      <th>Keywords</th>
+      <th>Used By Agents</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for learning in learnings %}
+    <tr>
+      <td>{{ learning.id }}</td>
+      <td>{{ learning.type }}</td>
+      <td>{{ learning.source }}</td>
+      <td>{{ learning.task_description or '-' }}</td>
+      <td>{{ learning.keywords | join(', ') if learning.keywords else '-' }}</td>
+      <td>{{ learning.used_by_agents | join(', ') if learning.used_by_agents else '-' }}</td>
+      <td>
+        <a href="/admin/learnings/{{ learning.id }}" class="btn btn-sm btn-primary">View</a>
+        <a href="/admin/learnings/{{ learning.id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+        <a href="/admin/learnings/{{ learning.id }}/delete" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="/admin/learnings/new" class="btn btn-success">Add New Learning</a>
+{% endblock %}
