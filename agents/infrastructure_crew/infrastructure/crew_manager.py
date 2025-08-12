@@ -37,6 +37,11 @@ from common.models import AgentRegistration, ServiceRegistrationRequest, Service
 from infrastructure.events import Event, EventPriority
 from infrastructure_crew.schemas.event_schema import EventSchema, EventField, EventTypePriority, ServiceInfo  # For type hinting in validation passthrough
 
+# Blockchain Integration
+from infrastructure_crew.blockchain.consensus import ConsensusManager, ConsensusType
+from infrastructure_crew.blockchain.transaction import TransactionManager
+from infrastructure_crew.blockchain.smart_contract import SmartContractInterface
+
 # Functional Crew Imports
 from infrastructure_crew.translation_crew.translation_crew import TranslationCrew
 from marketing_crew.marketing_crew import MarketingCrew
@@ -127,6 +132,18 @@ class CrewManager:
         self.task_orchestration_agent: Optional[TaskOrchestrationAgent] = None
         self.example_worker_agent: Optional[ExampleWorkerAgent] = None
         self.rdf_graph: Optional[Graph] = None
+        
+        # Initialize blockchain components
+        blockchain_config = config.get("blockchain_config", {})
+        self.consensus_manager = ConsensusManager(
+            consensus_type=ConsensusType[blockchain_config.get("consensus_type", "RAFT")],
+            quorum_size=blockchain_config.get("quorum_size", 3),
+            timeout_seconds=blockchain_config.get("timeout_seconds", 30.0)
+        )
+        self.transaction_manager = TransactionManager(
+            required_confirmations=blockchain_config.get("required_confirmations", 3)
+        )
+        self.smart_contract_interface = SmartContractInterface()
         
         # Initialize memory management
         self.memory_manager = MemoryManager(config.get("memory_config", {}))
