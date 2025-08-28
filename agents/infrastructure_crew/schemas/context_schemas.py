@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field
-from typing import Dict, Any, Optional, List, Union
+from pydantic import BaseModel, Field, validator
+from typing import Dict, Any, Optional, List, Union, Literal
 import uuid
 from datetime import datetime, timezone
 
@@ -14,7 +14,7 @@ class TeamMemoryInfo(BaseModel):
     shared_context_ids: List[str] = Field(default_factory=list, description="List of IDs of generic context objects shared by/with this team.")
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "team_id": "crew_alpha_processing_team",
                 "team_name": "Alpha Processing Crew",
@@ -47,7 +47,7 @@ class GenericContextObject(BaseModel):
         # For actual updates, this would need to be set explicitly by the updating logic.
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "context_id": "ctx_user_preferences_abc",
                 "context_type": "user_preferences_set",
@@ -76,7 +76,7 @@ class EntityState(BaseModel):
     state_schema_identifier: Optional[str] = Field(None, description="Identifier for the schema of custom_state_data, if applicable.")
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "entity_id": "worker_agent_data_processor_007",
                 "entity_type": "agent",
@@ -90,5 +90,3 @@ class EntityState(BaseModel):
             }
         }
 
-# Need to import Literal from typing for EntityState
-# Need to import validator from pydantic for GenericContextObject

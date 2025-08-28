@@ -134,7 +134,7 @@ class ServiceRegistrationRequest(ServiceInfo):
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "service_id": "user-service-1",
                 "name": "User Service",

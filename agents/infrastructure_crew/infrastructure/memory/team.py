@@ -27,7 +27,7 @@ class TeamMemory(BaseModel):
         json_encoders = {
             datetime: lambda v: v.isoformat() # Ensure datetime is ISO string in JSON
         }
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "team_id": "crew_alpha_processing_team_123",
                 "team_name": "Alpha Processing Crew",
